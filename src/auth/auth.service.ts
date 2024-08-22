@@ -39,6 +39,7 @@ export class AuthService {
     } else {
       // hash password
       const hash = await this.commonService.hashPassword(password)
+      // save user
       await this.usersService.create({email, password: hash})
       return this.commonService.customSuccessResponse(true, "Registration Successful", 200)
     }

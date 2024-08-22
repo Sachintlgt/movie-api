@@ -13,6 +13,7 @@ export class AppController {
 
   @ApiOperation({ summary: 'Test only' })
   @Get()
+  // just to check if all api working
   getHello() {
     return this.appService.getHello()
   }

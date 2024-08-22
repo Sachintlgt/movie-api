@@ -40,6 +40,7 @@ export class MoviesService {
   }
 
   findOne(id: number) {
+    // get user by id
     return this.movieRepository.findOneBy({ id });
   }
 

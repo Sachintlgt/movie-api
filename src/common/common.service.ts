@@ -85,6 +85,7 @@ export class CommonService {
     return bcrypt.compareSync(password, hash);
   }
 
+  // common success response
   customSuccessResponse(data: any, message: string, status: number) {
     return {data, message, error: null, status}
   }
