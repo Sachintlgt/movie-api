@@ -83,7 +83,8 @@ export class MoviesController {
     if(!movie) {
       throw new BadRequestException("Movie not found")
     }
-    return this.commonService.customSuccessResponse(movie, "Movie successfully fetched!", 200)
+    const signedUrl = await this.commonService.generatePresignedUrl(movie.image_url)
+    return this.commonService.customSuccessResponse({...movie, image_url: signedUrl}, "Movie successfully fetched!", 200)
   }
 
   @ApiOperation({summary: "Update a new Movie"})
