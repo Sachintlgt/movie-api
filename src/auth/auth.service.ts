@@ -14,10 +14,13 @@ export class AuthService {
 
   async login(body: LoginregisterDTO) {
     const { email, password } = body; 
+    // check user exists
     const existingUser = await this.usersService.findOneByEmail(email);
     if (existingUser) {
+      // verify password
       const result = this.commonService.verifyHashPassword(password, existingUser.password);
       if (result) {
+        // send response
         return this.commonService.customSuccessResponse({ id: existingUser.id, token: this.jwtService.sign({ email, id: existingUser.id }) }, "Login Success!", 200)
       } else {
         throw new BadRequestException('email or password is incorrect!');
@@ -29,10 +32,12 @@ export class AuthService {
 
   async register(body: LoginregisterDTO) {
     const { email, password } = body;
+    // check existence
     const existingUser = await this.usersService.findOneByEmail(email);
     if (existingUser) {
       throw new BadRequestException('User already Exists!');
     } else {
+      // hash password
       const hash = await this.commonService.hashPassword(password)
       await this.usersService.create({email, password: hash})
       return this.commonService.customSuccessResponse(true, "Registration Successful", 200)

@@ -21,6 +21,7 @@ export class MoviesService {
   }
 
   findMeta(created_by: number = 0) {
+    // find all count
     return this.movieRepository.count({
       ...(created_by ? {where: {
         created_by

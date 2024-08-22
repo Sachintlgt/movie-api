@@ -11,6 +11,8 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
+
+  // user utils to find / create or update
   findOneByEmail(email: string): Promise<User | null> {
     return this.usersRepository.findOneBy({ email });
   }

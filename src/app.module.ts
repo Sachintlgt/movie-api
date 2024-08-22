@@ -15,7 +15,9 @@ import { CommonService } from './common/common.service';
 
 @Module({
   imports: [
+    // env module
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
+    // DB module
     TypeOrmModule.forRootAsync({
       // @ts-ignore
       useFactory: async (configService: ConfigService) => ({
@@ -36,6 +38,7 @@ import { CommonService } from './common/common.service';
     CommonModule
   ],
   controllers: [AppController],
+  // services
   providers: [
     ConfigService,
     CommonService,

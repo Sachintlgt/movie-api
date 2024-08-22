@@ -9,6 +9,7 @@ async function bootstrap() {
   app.useGlobalGuards(new JwtGuard(app.get(Reflector)));
   app.useGlobalFilters(new HttpExceptionFilter());
   app.enableCors();
+  // swagger setup
   const config = new DocumentBuilder()
     .setTitle('Movie Apis')
     .setVersion('1.0')

@@ -28,7 +28,7 @@ export class CommonService {
 
   async uploadFile(file) {
     const { originalname } = file;
-
+    // uplaod file to S3
     return await this.s3_upload(
       file.buffer,
       this.AWS_S3_BUCKET,
@@ -39,6 +39,7 @@ export class CommonService {
 
   async deleteFile(name: string) {
     var params = { Bucket: this.AWS_S3_BUCKET, Key: name };
+    // delete s3 object
     const s3Response = this.s3.deleteObject(params).promise();
     return s3Response;
   }
@@ -75,6 +76,7 @@ export class CommonService {
     }
   }
 
+  // bcypt utils
   hashPassword(password: string) {
     return bcrypt.hash(password, 10);
   }

@@ -7,6 +7,7 @@ import {
     ApiProperty
   } from '@nestjs/swagger';
 
+  // login dto object
 export class LoginregisterDTO {
     @IsEmail()
     @IsNotEmpty()
